@@ -1,0 +1,14 @@
+node_modules
+dist
+.DS_Store
+.vite
+*.log
+
+# Capacitor / Android build outputs
+android/
+ios/
+.capacitor
+
+# Editor
+.vscode
+.idea

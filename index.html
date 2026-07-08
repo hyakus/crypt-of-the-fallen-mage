@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#0b0a16" />
+    <title>Crypt of the Fallen Mage</title>
+    <!--
+      UI font: Lora. Serif designed by Cyreal SPECIFICALLY for screen body
+      text — thick stems, generous x-height, glyphs hinted for the pixel
+      grid at small sizes. Cormorant Garamond was the wrong tool: a display
+      serif whose thin strokes vanish below ~28 px. Lora reads cleanly at
+      14 px (combat log) through 48 px (titles) without sacrificing the
+      dark-fantasy serif aesthetic.
+
+      Loaded via Google Fonts preconnect + stylesheet. For offline Android
+      builds (Capacitor), drop WOFF2 files into `public/fonts/` and switch
+      to local @font-face — the font-family name stays the same so no
+      other code changes.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+      html, body { margin: 0; padding: 0; background: #0b0a16; color: #e9e4d0; font-family: "Lora", "Georgia", "Times New Roman", serif; overflow: hidden; height: 100%; width: 100%; }
+      /* position:fixed + inset:0 forces #game to occupy the actual visual
+         viewport on Capacitor Android. 100vw/100vh can disagree with the
+         immersive-mode viewport on some WebView versions; fixed-inset
+         doesn't. */
+      #game { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+      /* Smooth interpolation when the canvas is FIT-scaled to the browser.
+         "pixelated" is for pixel-art games — using it here made high-DPI
+         text look blocky/blurry. "auto" gives proper bilinear sampling. */
+      canvas { image-rendering: auto; display: block; }
+    </style>
+  </head>
+  <body>
+    <div id="game"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

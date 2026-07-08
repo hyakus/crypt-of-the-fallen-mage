@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Combat backdrop — ALCHEMICAL SIGIL ONLY.
+  Deliberately split from the scene's dark background + amber halo + vignette
+  + grit, which are now drawn natively in Phaser (CombatScene.create paints
+  them once via `bgGraphics`). The reason: this SVG is the animated layer.
+  CombatScene's start-of-combat choreography scales it from a thin line to
+  the full disc; if the dark battlefield bg were baked into the SVG, the bg
+  would scale too — making the whole battlefield "shrink and grow" with the
+  sigil. By keeping the SVG transparent except for the rings/runes/motes,
+  only the arcane geometry animates while the dark field stays stable.
+
+  ViewBox 1200×800. All sigil geometry centred at (600, 400). Aspect-ratio
+  stretch is fine — concentric rings stretched into ellipses still read.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="none">
+  <defs>
+    <!-- A single rune glyph drawn as a path, reused around the outer ring -->
+    <g id="rune">
+      <path d="M -6,-8 L 6,-8 L 6,8 L -6,8 Z M 0,-8 L 0,8 M -6,0 L 6,0" stroke="#e2a93e" stroke-width="1.2" fill="none" stroke-opacity="0.55"/>
+    </g>
+  </defs>
+
+  <!-- ===== ALCHEMICAL SIGIL — centred at (600, 400) ===== -->
+  <g transform="translate(600 400)">
+    <!-- Energy streaks radiating outward like a slow shockwave -->
+    <g stroke="#e2a93e" stroke-width="1" stroke-opacity="0.10" fill="none">
+      <line x1="-360" y1="0"   x2="360" y2="0"/>
+      <line x1="0"    y1="-360" x2="0"   y2="360"/>
+      <line x1="-255" y1="-255" x2="255" y2="255"/>
+      <line x1="-255" y1="255"  x2="255" y2="-255"/>
+    </g>
+
+    <!-- Outermost ring -->
+    <circle cx="0" cy="0" r="340" fill="none" stroke="#8b5a1d" stroke-width="2" stroke-opacity="0.45"/>
+    <circle cx="0" cy="0" r="332" fill="none" stroke="#3a2a1f" stroke-width="1" stroke-opacity="0.85"/>
+
+    <!-- Tick marks on the outermost ring -->
+    <g stroke="#e2a93e" stroke-width="1.2" stroke-opacity="0.45">
+      <line x1="0"    y1="-336" x2="0"    y2="-348"/>
+      <line x1="0"    y1="336"  x2="0"    y2="348"/>
+      <line x1="-336" y1="0"    x2="-348" y2="0"/>
+      <line x1="336"  y1="0"    x2="348"  y2="0"/>
+      <line x1="-238" y1="-238" x2="-246" y2="-246"/>
+      <line x1="238"  y1="-238" x2="246"  y2="-246"/>
+      <line x1="-238" y1="238"  x2="-246" y2="246"/>
+      <line x1="238"  y1="238"  x2="246"  y2="246"/>
+    </g>
+
+    <!-- Mid-outer ring with runic glyphs between it and the outermost ring -->
+    <circle cx="0" cy="0" r="290" fill="none" stroke="#8b5a1d" stroke-width="1.5" stroke-opacity="0.45"/>
+
+    <!-- 12 runes spaced around the ring at 30° intervals.
+         Each rune is rotated to face outward. -->
+    <g>
+      <use href="#rune" transform="rotate(0)   translate(0 -312)"/>
+      <use href="#rune" transform="rotate(30)  translate(0 -312)"/>
+      <use href="#rune" transform="rotate(60)  translate(0 -312)"/>
+      <use href="#rune" transform="rotate(90)  translate(0 -312)"/>
+      <use href="#rune" transform="rotate(120) translate(0 -312)"/>
+      <use href="#rune" transform="rotate(150) translate(0 -312)"/>
+      <use href="#rune" transform="rotate(180) translate(0 -312)"/>
+      <use href="#rune" transform="rotate(210) translate(0 -312)"/>
+      <use href="#rune" transform="rotate(240) translate(0 -312)"/>
+      <use href="#rune" transform="rotate(270) translate(0 -312)"/>
+      <use href="#rune" transform="rotate(300) translate(0 -312)"/>
+      <use href="#rune" transform="rotate(330) translate(0 -312)"/>
+    </g>
+
+    <!-- Inner ring set -->
+    <circle cx="0" cy="0" r="220" fill="none" stroke="#8b5a1d" stroke-width="1.5" stroke-opacity="0.5"/>
+    <circle cx="0" cy="0" r="200" fill="none" stroke="#3a2a1f" stroke-width="1"   stroke-opacity="0.9"/>
+
+    <!-- Inscribed HEXAGRAM (two overlapping triangles) — alchemical -->
+    <g stroke="#e2a93e" stroke-width="1.5" stroke-opacity="0.55" fill="none">
+      <!-- Upward triangle -->
+      <path d="M 0,-180 L 156,90 L -156,90 Z"/>
+      <!-- Downward triangle -->
+      <path d="M 0,180 L 156,-90 L -156,-90 Z"/>
+    </g>
+
+    <!-- Smaller inner circle pinning the hexagram -->
+    <circle cx="0" cy="0" r="90" fill="none" stroke="#8b5a1d" stroke-width="1.5" stroke-opacity="0.6"/>
+    <circle cx="0" cy="0" r="78" fill="none" stroke="#e2a93e" stroke-width="0.8" stroke-opacity="0.4"/>
+
+    <!-- Central core — a small filled sigil with crossed rune marks -->
+    <circle cx="0" cy="0" r="32" fill="#1a0e1a" stroke="#e2a93e" stroke-width="1" stroke-opacity="0.5"/>
+    <g stroke="#e2a93e" stroke-width="1.5" stroke-opacity="0.55" fill="none">
+      <line x1="-20" y1="0"   x2="20"  y2="0"/>
+      <line x1="0"   y1="-20" x2="0"   y2="20"/>
+      <line x1="-14" y1="-14" x2="14"  y2="14"/>
+      <line x1="-14" y1="14"  x2="14"  y2="-14"/>
+    </g>
+    <circle cx="0" cy="0" r="4" fill="#e2a93e" opacity="0.7"/>
+  </g>
+
+  <!-- Floating motes — small bright specks scattered around the sigil,
+       suggesting magical energy in the air. Positioned outside the inner
+       reading area where the cards/HUD sit so they read as ambient. -->
+  <g fill="#f5cb6d" opacity="0.4">
+    <circle cx="180"  cy="120" r="2"/>
+    <circle cx="240"  cy="220" r="1.5"/>
+    <circle cx="120"  cy="320" r="2"/>
+    <circle cx="80"   cy="520" r="1.5"/>
+    <circle cx="200"  cy="640" r="2"/>
+    <circle cx="1020" cy="120" r="2"/>
+    <circle cx="960"  cy="220" r="1.5"/>
+    <circle cx="1080" cy="320" r="2"/>
+    <circle cx="1120" cy="520" r="1.5"/>
+    <circle cx="1000" cy="640" r="2"/>
+  </g>
+</svg>

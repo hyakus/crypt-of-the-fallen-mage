@@ -1,0 +1,30 @@
+{
+  "name": "crypt-of-the-fallen-mage",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A deck-building rogue-lite where a decaying wizard fights his way out of a dungeon to reclaim his life.",
+  "scripts": {
+    "art": "node tools/gen.mjs",
+    "dev": "vite",
+    "dev:fresh": "kill -9 $(lsof -ti :5173 2>/dev/null) 2>/dev/null; vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "cap:add:android": "cap add android",
+    "cap:sync": "npm run build && cap sync",
+    "cap:open:android": "cap open android",
+    "android": "npm run build && cap sync android && cap run android"
+  },
+  "dependencies": {
+    "@capacitor/app": "^6.0.3",
+    "phaser": "^3.80.1"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^6.1.0",
+    "@capacitor/cli": "^6.1.0",
+    "@capacitor/core": "^6.1.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0"
+  }
+}
